@@ -13,9 +13,9 @@ d1 = norm(R1 - Tx);
 d2 = norm(R2 - Tx);
 d3 = norm(R3 - Tx);
 
-d12 = d1 - d2; % R1 to R2
-d23 = d2 - d3; % R2 to R3
-d13 = d1 - d3; % R1 to R3
+d12 = d1 - d2 +100; % R1 to R2
+d23 = d2 - d3 - 300; % R2 to R3
+d13 = d1 - d3 + 200; % R1 to R3
 
 % Grid for contour plot
 x = linspace(-1000, a+1000, 600);
