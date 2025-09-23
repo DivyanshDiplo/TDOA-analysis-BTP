@@ -1,0 +1,43 @@
+a = 2000; % Side of equilateral triangle
+
+% Receiver coordinates
+R1 = [0, 0];
+R2 = [a, 0];
+R3 = [a/2, a*sqrt(3)/2];
+
+% Transmitter (centroid)
+Tx = [a/3, a*sqrt(3)/6];
+
+% Calculate true TDOA distances
+d1 = norm(R1 - Tx);
+d2 = norm(R2 - Tx);
+d3 = norm(R3 - Tx);
+
+d12 = d1 - d2; % R1 to R2
+d23 = d2 - d3; % R2 to R3
+d13 = d1 - d3; % R1 to R3
+
+% Grid for contour plot
+x = linspace(-1000, a+1000, 600);
+y = linspace(-1000, a*sqrt(3)/2+1000, 600);
+[X, Y] = meshgrid(x, y);
+
+% Hyperbola equations (no abs)
+H12 = sqrt((X - R1(1)).^2 + (Y - R1(2)).^2) - sqrt((X - R2(1)).^2 + (Y - R2(2)).^2) - d12;
+H23 = sqrt((X - R2(1)).^2 + (Y - R2(2)).^2) - sqrt((X - R3(1)).^2 + (Y - R3(2)).^2) - d23;
+H13 = sqrt((X - R1(1)).^2 + (Y - R1(2)).^2) - sqrt((X - R3(1)).^2 + (Y - R3(2)).^2) - d13;
+
+figure;
+contour(X, Y, H12, [0 0], 'r', 'LineWidth', 2); hold on;
+contour(X, Y, H23, [0 0], 'g', 'LineWidth', 2);
+contour(X, Y, H13, [0 0], 'b', 'LineWidth', 2);
+
+% Plot triangle and transmitter
+plot([R1(1), R2(1), R3(1), R1(1)], [R1(2), R2(2), R3(2), R1(2)], 'ko--','LineWidth',2);
+plot(Tx(1), Tx(2), 'kp', 'MarkerSize', 14, 'MarkerFaceColor', 'y');
+
+legend('Hyperbola R1-R2','Hyperbola R2-R3','Hyperbola R1-R3','Receivers','Transmitter');
+xlabel('X (meters)');
+ylabel('Y (meters)');
+title('TDOA Hyperbolas for 3 Receivers');
+axis equal; grid on;
