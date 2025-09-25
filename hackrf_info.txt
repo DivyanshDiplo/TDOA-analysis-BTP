@@ -1,0 +1,14 @@
+Slave Hackrf ID - RunningFromRAM
+Master Hackrf ID - 0000000000000000f77c60dc285e9fc3
+Transmitter Hackrf ID - 000000000000000066a062dc233e1b9f
+
+
+To Synchronize
+hackrf_transfer -r rx_slave.bin -f 433000000 -s 2000000 -d 0000000000000000f77c60dc294084c3
+hackrf_transfer -r rx.master.bin -f 433000000 -s 2000000 -d 0000000000000000f77c60dc285e9fc3
+
+
+dfu-util --device 1fc9:000c --alt 0 --download /home/bharti/Downloads/hackrf-2024.02.1/firmware-bin/hackrf_one_usb.dfu
+hackrf_spiflash -w /home/bharti/Downloads/hackrf-2024.02.1/firmware-bin/hackrf_one_usb.bin
+
+
