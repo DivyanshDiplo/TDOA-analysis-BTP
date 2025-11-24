@@ -1,0 +1,7 @@
+ssh alarm@raspberrypi.local
+
+ssh-keygen -R raspberrypi.local 
+#remove the old ssh keys
+
+sudo apt update
+sudo apt install git cmake build-essential libusb-1.0-0-dev

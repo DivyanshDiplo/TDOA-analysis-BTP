@@ -1,0 +1,12 @@
+# no need if already have the keys
+ssh-keygen -t ed25519 -C "WSL to Pi"
+
+type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh alarm@ip "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+
+
+ssh-copy-id alarm@ip
+./tdoa.sh 433000000 105000000 1200000
+
+sudo apt install dos2unix   # if not already installed
+dos2unix tdoa.sh
+
