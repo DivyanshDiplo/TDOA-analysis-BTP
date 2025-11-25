@@ -107,4 +107,36 @@ replace freq1 with unknown Tx freq and freq2 with reference Tx freq
 
 ## Matlab script
 run the main matlab file after installing it and run it
-   
+
+## Updated HTML Code 
+  the Script gives you html file with outdated CDN version to update it replace with following 
+
+```
+#at line 4
+<head>
+<title>Simple Leaflet Map</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+</head>
+
+#with
+<head>
+<title>Simple Leaflet Map</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""/>
+</head>
+
+```
+
+```
+#at line 14
+<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"> </script>
+
+#with
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
+```
